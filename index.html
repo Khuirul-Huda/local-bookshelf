@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Local Bookshelf</title>
 </head>
 
@@ -18,22 +19,22 @@
             <h2 class="bg-white text-black relative"><span
                     class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Masukkan Data Buku</span></h2>
             <form id="tambah-buku">
-                    <div>
-                <label for="judul-buku">Judul:</label>
-                <input class="text-black w-full border p-2 mb-3" type="text" name="nama-buku" id="judul-buku"
-                    placeholder="Sebuah Awan" required>
-                <label for="judul-buku">Penulis:</label>
-                <input class="text-black  w-full border p-2 mb-3" type="text" name="penulis-buku" id="penulis-buku"
-                    placeholder="Muhammad Khuirul Huda" required>
-                <label for="tahun-buku">Tahun:</label>
-                <input class="text-black w-full border p-2 mb-3" type="number" name="tahun-buku" id="tahun-buku"
-                    placeholder="2023" required>
-                <label class="" for="selesai-dibaca">Sudah selesai dibaca kak?</label>
-                <input class="" type="checkbox" name="selesai-dibaca" id="selesai-dibaca">
+                <div>
+                    <label for="judul-buku">Judul:</label>
+                    <input class="text-black w-full border p-2 mb-3" type="text" name="nama-buku" id="judul-buku"
+                        placeholder="Sebuah Awan" required>
+                    <label for="judul-buku">Penulis:</label>
+                    <input class="text-black  w-full border p-2 mb-3" type="text" name="penulis-buku" id="penulis-buku"
+                        placeholder="Muhammad Khuirul Huda" required>
+                    <label for="tahun-buku">Tahun:</label>
+                    <input class="text-black w-full border p-2 mb-3" type="number" name="tahun-buku" id="tahun-buku"
+                        placeholder="2023" required>
+                    <label class="" for="selesai-dibaca">Sudah selesai dibaca kak?</label>
+                    <input class="" type="checkbox" name="selesai-dibaca" id="selesai-dibaca">
 
-            </div>
-            <button class="my-4 rounded-lg p-2 border hover:border-green-400 active:text-xl" >Simpan</button>
-        </form>
+                </div>
+                <button class="my-4 rounded-lg p-2 border hover:border-green-400 active:text-xl">Simpan</button>
+            </form>
         </section>
 
         <section class="mt-20 p-7 border rounded-lg" id="input-data">
@@ -47,8 +48,12 @@
                     <h4 class="font-extrabold text-3xl">$judul</h4>
                     <p class="text-sm">$author</p>
                     <p class="text-sm">$year</p>
-                    <button data-id="$id" class="tandai-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Selesai dibaca</button>
-                    <button data-id="$id" class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus buku</button>
+                    <button data-id="$id"
+                        class="tandai-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Selesai
+                        dibaca</button>
+                    <button data-id="$id"
+                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus
+                        buku</button>
                 </div>
 
             </div>
@@ -60,15 +65,19 @@
                     class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Sudah
                     selesai dibaca</span></h2>
             <p>Buku ini sudah selesai kamu baca yeyy....</p>
-            <div  id="layout-selesai-dibaca">
+            <div id="layout-selesai-dibaca">
 
                 <div class="border p-5">
                     <h4 class="font-extrabold text-3xl">$judul</h4>
                     <p class="text-sm">$author</p>
                     <p class="text-sm">$year</p>
-                    <button data-id="$id" class="tandai-belum-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Belum selesai
+                    <button data-id="$id"
+                        class="tandai-belum-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Belum
+                        selesai
                         dibaca</button>
-                    <button data-id="$id" class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus buku</button>
+                    <button data-id="$id"
+                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus
+                        buku</button>
                 </div>
 
             </div>
@@ -80,6 +89,7 @@
         <p class="text-sm">GPL</p>
 
     </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://unpkg.com/starback@2.1.1/dist/starback.global.js"></script>
     <script>
 
@@ -93,9 +103,20 @@
             randomOpacity: true,
         })
 
+        //  Lib toast
+        function toast(msg) {
+            Toastify({
+
+                text: msg,
+
+                duration: 3000
+
+            }).showToast();
+        }
+
         // Control
         const KEY_NAME = 'data';
-        
+
 
         const unfinishedElement = document.getElementById('belum-dibaca')
         const finishedElement = document.getElementById('layout-selesai-dibaca')
@@ -110,7 +131,7 @@
         // let globalBookData = getAllBook()
         updateAll()
 
-        if (typeof(localStorage) == undefined) console.error('Localstorage not available')
+        if (typeof (localStorage) == undefined) console.error('Localstorage not available')
 
         function getAllBook() {
             let data = localStorage.getItem(KEY_NAME)
@@ -119,7 +140,7 @@
                 return data
             } else {
                 console.info('No data found, possibly first time user')
-                return 
+                return
             }
         }
 
@@ -128,8 +149,9 @@
 
                 if (globalBookData[i]['id'] == id) {
                     globalBookData[i]['isCompleted'] = true
+                    toast(globalBookData[i]['title'] + ' selesai')
                     break
-                } 
+                }
             }
             localStorage.setItem(KEY_NAME, JSON.stringify(globalBookData))
             updateAll()
@@ -139,8 +161,9 @@
             for (let i = 0; i < globalBookData.length; i++) {
                 if (globalBookData[i]['id'] == id) {
                     globalBookData[i]['isCompleted'] = false
+                    toast(globalBookData[i]['title'] + ' ditandai belum selesai')
                     break
-                } 
+                }
             }
             localStorage.setItem(KEY_NAME, JSON.stringify(globalBookData))
             updateAll()
@@ -149,9 +172,11 @@
         function deleteBook(id) {
             for (let i = 0; i < globalBookData.length; i++) {
                 if (globalBookData[i]['id'] == id) {
+                    toast(globalBookData[i]['title'] + ' dihapus')
                     globalBookData.splice(i, 1)
+                    
                     break
-                } 
+                }
             }
             localStorage.setItem(KEY_NAME, JSON.stringify(globalBookData))
             updateAll()
@@ -159,18 +184,18 @@
 
         function updateAll() {
             globalBookData = getAllBook()
-            
+
             if (globalBookData == null) return
-            
+
             let uncompletedBooksLayout = ''
             let completedBooksLayout = ''
 
             globalBookData.forEach(item => {
-              
-                if(item['isCompleted'] === true) {
+
+                if (item['isCompleted'] === true) {
                     completedBooksLayout += completedTemplate.replaceAll('$id', item['id']).replace('$judul', item['title']).replace('$year', item['year']).replace('$author', item['author'])
                 } else {
-                    
+
                     uncompletedBooksLayout += uncompletedTemplate.replaceAll('$id', item['id']).replace('$judul', item['title']).replace('$year', item['year']).replace('$author', item['author'])
 
                 }
@@ -192,11 +217,13 @@
                 "isCompleted": isCompleted
             }
 
+            toast(book['title'] + ' ditambahkan')
+
             if (globalBookData == null) {
                 localStorage.setItem(KEY_NAME, JSON.stringify([book]))
                 updateAll()
                 return
-            } 
+            }
             globalBookData.push(book)
 
             localStorage.setItem(KEY_NAME, JSON.stringify(globalBookData))
@@ -205,41 +232,41 @@
 
         }
 
-        function getValueOf(id){
+        function getValueOf(id) {
             return document.getElementById(id).value
         }
 
-        function registerListener(){
+        function registerListener() {
             Array.from(document.getElementsByClassName('tandai-selesai')).forEach(item => {
-            item.addEventListener('click', e=>{
-                setComplete(e.srcElement.attributes['data-id'].nodeValue)
+                item.addEventListener('click', e => {
+                    setComplete(e.srcElement.attributes['data-id'].nodeValue)
+                })
             })
-        })
 
-        Array.from(document.getElementsByClassName('hapus-buku')).forEach(item => {
-            item.addEventListener('click', e=>{
-                deleteBook(e.srcElement.attributes['data-id'].nodeValue)
+            Array.from(document.getElementsByClassName('hapus-buku')).forEach(item => {
+                item.addEventListener('click', e => {
+                    deleteBook(e.srcElement.attributes['data-id'].nodeValue)
+                })
             })
-        })
 
-        Array.from(document.getElementsByClassName('tandai-belum-selesai')).forEach(item => {
-            item.addEventListener('click', e=>{
-                setUncompleted(e.srcElement.attributes['data-id'].nodeValue)
+            Array.from(document.getElementsByClassName('tandai-belum-selesai')).forEach(item => {
+                item.addEventListener('click', e => {
+                    setUncompleted(e.srcElement.attributes['data-id'].nodeValue)
+                })
             })
-        })
         }
 
 
         //  Event Listener
         document.getElementById('tambah-buku').addEventListener('submit', (e) => {
             e.preventDefault()
-            addBook(+new Date(), getValueOf('judul-buku'), getValueOf('penulis-buku'), getValueOf('tahun-buku'), document.getElementById('selesai-dibaca').checked )
+            addBook(+new Date(), getValueOf('judul-buku'), getValueOf('penulis-buku'), getValueOf('tahun-buku'), document.getElementById('selesai-dibaca').checked)
         })
 
         registerListener()
 
-        
-        
+
+
 
     </script>
 </body>
