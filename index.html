@@ -103,7 +103,11 @@
         const uncompletedTemplate = unfinishedElement.innerHTML
         const completedTemplate = finishedElement.innerHTML
 
-        let globalBookData = getAllBook()
+        // reset html
+        unfinishedElement.innerHTML = ''
+        finishedElement.innerHTML = ''
+
+        // let globalBookData = getAllBook()
         updateAll()
 
         if (typeof(localStorage) == undefined) console.error('Localstorage not available')
