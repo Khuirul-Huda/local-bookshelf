@@ -15,7 +15,7 @@
     <main class="container mx-auto text-white" id="">
         <h1 class="text-center font-bold text-4xl pt-10">Local Bookshelf</h1>
         <p class="text-center text-md">A local bookshelf on your pocket</p>
-        <section class="mt-20 p-7 border rounded-lg" id="input-data">
+        <section class="mt-20 p-7 border rounded-lg backdrop-blur-md" id="input-data">
             <h2 class="bg-white text-black relative"><span
                     class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Masukkan Data Buku</span></h2>
             <form id="tambah-buku">
@@ -23,7 +23,7 @@
                     <label for="judul-buku">Judul:</label>
                     <input class="text-black w-full border p-2 mb-3" type="text" name="nama-buku" id="judul-buku"
                         placeholder="Sebuah Awan" required>
-                    <label for="judul-buku">Penulis:</label>
+                    <label for="penulis-buku">Penulis:</label>
                     <input class="text-black  w-full border p-2 mb-3" type="text" name="penulis-buku" id="penulis-buku"
                         placeholder="Muhammad Khuirul Huda" required>
                     <label for="tahun-buku">Tahun:</label>
@@ -33,11 +33,19 @@
                     <input class="" type="checkbox" name="selesai-dibaca" id="selesai-dibaca">
 
                 </div>
-                <button class="my-4 rounded-lg p-2 border hover:border-green-400 active:text-xl">Simpan</button>
+                <button class="my-4 rounded-lg p-2 border hover:border-green-400 transition ease-in-out duration-300 hover:-translate-y-1">Simpan</button>
             </form>
         </section>
 
-        <section class="mt-20 p-7 border rounded-lg" id="input-data">
+        <section class="mt-20 p-7 border rounded-lg backdrop-blur-md" id="cari-data">
+            <h2 class="bg-white text-black relative"><span
+                    class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Pencarian</span></h2>
+            <label for="judul-buku">Judul:</label>
+            <input class="text-black  w-full border p-2 mb-3" type="text" name="pencarian" id="pencarian"
+                placeholder="Awan Mendung" required>
+        </section>
+
+        <section class="mt-20 p-7 border rounded-lg backdrop-blur-md" id="input-data">
             <h2 class="bg-white relative text-black"><span
                     class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Belum
                     selesai dibaca</span></h2>
@@ -47,12 +55,12 @@
                 <div class="border p-5">
                     <h4 class="font-extrabold text-3xl">$judul</h4>
                     <p class="text-sm">$author</p>
-                    <p class="text-sm">$year</p>
+                    <p class="text-sm mb-1">$year</p>
                     <button data-id="$id"
-                        class="tandai-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Selesai
+                        class="tandai-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500 transition ease-in-out duration-300 hover:-translate-y-1">Selesai
                         dibaca</button>
                     <button data-id="$id"
-                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus
+                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500 transition ease-in-out duration-300 hover:-translate-y-1">Hapus
                         buku</button>
                 </div>
 
@@ -60,23 +68,23 @@
         </section>
 
 
-        <section class="mt-20 p-7 border rounded-lg" id="input-data">
+        <section class="mt-20 p-7 border rounded-lg backdrop-blur-md" id="input-data">
             <h2 class="bg-white relative text-black"><span
                     class="absolute bottom-4 bg-inherit p-2 border rounded-full px-4 ">Sudah
                     selesai dibaca</span></h2>
             <p>Buku ini sudah selesai kamu baca yeyy....</p>
             <div id="layout-selesai-dibaca">
 
-                <div class="border p-5">
+                <div class="border p-5 ">
                     <h4 class="font-extrabold text-3xl">$judul</h4>
                     <p class="text-sm">$author</p>
-                    <p class="text-sm">$year</p>
+                    <p class="text-sm mb-1">$year</p>
                     <button data-id="$id"
-                        class="tandai-belum-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500">Belum
+                        class="tandai-belum-selesai border text-sm rounded-full px-3 py-1 hover:border-green-500 transition ease-in-out duration-300 hover:-translate-y-1">Belum
                         selesai
                         dibaca</button>
                     <button data-id="$id"
-                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500">Hapus
+                        class="hapus-buku border text-sm rounded-full px-3 py-1 hover:border-red-500 transition ease-in-out duration-300 hover:-translate-y-1">Hapus
                         buku</button>
                 </div>
 
@@ -86,7 +94,7 @@
     </main>
     <footer class="text-center text-white mt-20 mb-10 ">
         <p class="text-sm">Copyright &copy; 2023 Local Bookshelf</p>
-        <p class="text-sm">GPL</p>
+        <p class="text-sm">GPL 3.0 | Crafted with &lt;3 by @khuirul_huda </p>
 
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -174,7 +182,7 @@
                 if (globalBookData[i]['id'] == id) {
                     toast(globalBookData[i]['title'] + ' dihapus')
                     globalBookData.splice(i, 1)
-                    
+
                     break
                 }
             }
@@ -206,6 +214,36 @@
             registerListener()
             // console.log(unfinishedElement.innerHTML)
 
+        }
+
+        function searchBook(title) {
+            if (title == '') {
+                updateAll()
+                return false
+            }
+            let searchResult = []
+            globalBookData.forEach(item => {
+                if (item['title'].toLowerCase().includes(title.toLowerCase())){
+                    searchResult.push(item)
+                }
+            })
+            let uncompletedBooksLayout = ''
+            let completedBooksLayout = ''
+
+            searchResult.forEach(item => {
+
+                if (item['isCompleted'] === true) {
+                    completedBooksLayout += completedTemplate.replaceAll('$id', item['id']).replace('$judul', item['title']).replace('$year', item['year']).replace('$author', item['author'])
+                } else {
+
+                    uncompletedBooksLayout += uncompletedTemplate.replaceAll('$id', item['id']).replace('$judul', item['title']).replace('$year', item['year']).replace('$author', item['author'])
+
+                }
+            })
+
+            finishedElement.innerHTML = completedBooksLayout
+            unfinishedElement.innerHTML = uncompletedBooksLayout
+            registerListener()
         }
 
         function addBook(id, title, author, year, isCompleted) {
@@ -261,6 +299,10 @@
         document.getElementById('tambah-buku').addEventListener('submit', (e) => {
             e.preventDefault()
             addBook(+new Date(), getValueOf('judul-buku'), getValueOf('penulis-buku'), getValueOf('tahun-buku'), document.getElementById('selesai-dibaca').checked)
+        })
+
+        document.getElementById('pencarian').addEventListener('input', (e) =>{
+            searchBook(document.getElementById('pencarian').value)
         })
 
         registerListener()
